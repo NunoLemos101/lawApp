@@ -10,6 +10,7 @@ from notes.models import SupportTicket, SupportTicketMessage
 
 User = get_user_model()
 
+
 class SupportTicketViewSet(ViewSet):
     """
     A viewset that provides the standard actions
@@ -72,3 +73,4 @@ class SupportTicketViewSet(ViewSet):
             return Response(SupportTicketDetailSerializer(ticket).data, status=200)
         else:
             return HttpResponse(403)
+        
