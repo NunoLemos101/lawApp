@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'notes.apps.NotesConfig',
     'authentication.apps.AuthenticationConfig',
     'paypal.apps.PaypalConfig',
+    'metrics.apps.MetricsConfig',
 ]
 
 SITE_ID = 1

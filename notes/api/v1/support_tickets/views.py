@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
 from notes.api.serializers import SupportTicketListSerializer, SupportTicketDetailSerializer
-from notes.api.utils.override import ResponseThen
 from notes.models import SupportTicket, SupportTicketMessage
 
 User = get_user_model()
@@ -62,7 +61,7 @@ class SupportTicketViewSet(ViewSet):
                 ticket_message.was_seen = True
                 ticket_message.save()
 
-        return ResponseThen(SupportTicketListSerializer(SupportTicket.objects.filter(user=request.user), many=True).data, then_callback=then, status=200)
+        return Response(SupportTicketListSerializer(SupportTicket.objects.filter(user=request.user), many=True).data, status=200)
 
     def retrieve(self, request, pk, *args, **kwargs):
         """
