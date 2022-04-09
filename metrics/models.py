@@ -11,3 +11,5 @@ class ArticleVisitAction(models.Model):
     user = models.ForeignKey(to=User, related_name="visited_articles", on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return "{} {}".format(self.user, self.article.__str__())

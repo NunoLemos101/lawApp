@@ -39,8 +39,7 @@ class SupportTicketViewSet(ViewSet):
         if ticket.state == "Enviado":
             return Response(data={"message": "Voce tem de esperar até receber uma resposta da nossa Staff"}, status=200)
 
-        else:
-            return Response(data={"message": "This ticket is closed"}, status=200)
+        return Response(data={"message": "This ticket is closed"}, status=200)
 
     def create(self, request):
         """
@@ -55,12 +54,6 @@ class SupportTicketViewSet(ViewSet):
         """
         Overridden
         """
-        def then(*args):
-            query = SupportTicketMessage.objects.filter(user=User.objects.get(pk=1), was_seen=False, ticket__user=request.user)
-            for ticket_message in query:
-                ticket_message.was_seen = True
-                ticket_message.save()
-
         return Response(SupportTicketListSerializer(SupportTicket.objects.filter(user=request.user), many=True).data, status=200)
 
     def retrieve(self, request, pk, *args, **kwargs):
@@ -70,6 +63,5 @@ class SupportTicketViewSet(ViewSet):
         ticket = SupportTicket.objects.get(pk=pk)
         if request.user == ticket.user:
             return Response(SupportTicketDetailSerializer(ticket).data, status=200)
-        else:
-            return HttpResponse(403)
+        return HttpResponse(403)
         
