@@ -14,7 +14,7 @@ class Command(BaseCommand):
         json_file = open("json_data", "r")
         string_data = json_file.read()
         x = json.loads(string_data)
-        category = Category.objects.get(name="Código do trabalho")
+        category = Category.objects.get(name="Código do Procedimento Administrativo")
         for article in x:
             print(Article.objects.create(title=article["title"], body=article["body"], category=category))
         self.stdout.write(self.style.SUCCESS(str(len(x)) + " Articles created"))
