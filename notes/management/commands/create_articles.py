@@ -20,7 +20,9 @@ class TempArticle:
 
 def remove_non_wanted_stuff(artigo):
     index = artigo.find("Contém as alterações introduzidas pelos seguintes diplomas:")
-    return artigo[:index]
+    index2 = artigo.find("Aditado pelo seguinte diploma:")
+    return artigo[:index][:index2]
+
 
 
 def get_article_number(artigo):
