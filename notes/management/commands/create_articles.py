@@ -60,8 +60,7 @@ class Command(BaseCommand):
         json_file = open("json_data", "r")
         string_data = json_file.read()
         formatted_data = json.loads(string_data)
-        category = Category.objects.get(name=options["category_name"][0])
+        category = Category.objects.create(name=options["category_name"][0])
         for article in formatted_data:
             print(Article.objects.create(title=article["title"], body=article["body"], category=category))
         self.stdout.write(self.style.SUCCESS(str(len(formatted_data)) + " Articles created"))
-        
