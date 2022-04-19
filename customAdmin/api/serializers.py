@@ -27,11 +27,28 @@ class ReactNativeArticlesSerializer(serializers.ModelSerializer):
         fields = ["title1", "title2", "id"]
 
     def get_title1(self, obj):
-        return obj.title.split('-')[0]
+        arr = obj.title.split('-')
+        if len(arr[1]) == 1:
+            return arr[0] + " " + arr[1]
+        elif len(arr[1]) == 2:
+            return arr[0] + " " + arr[1][0]
+        elif arr[0][len(arr[0]) - 1] == " ":
+            return arr[0][:len(arr[0]) - 1]
+        return arr[0]
 
     def get_title2(self, obj):
         try:
             title2 = obj.title.split('-')[1]
-            return title2
+            print(title2)
+            if len(title2) == 1:
+                return obj.title.split('-')[2]
+            elif len(title2) == 2:
+                return obj.title.split('-')[2][1:]
+            elif obj.title.split('-')[1][0] == " ":
+                return obj.title.split('-')[1][1:]
+            return obj.title.split('-')[1]
+
         except:
-            return obj.title.split('-')[0]
+            if obj.title.split('-')[1][0] == " ":
+                return obj.title.split('-')[1][1:]
+            return obj.title.split('-')[1]
