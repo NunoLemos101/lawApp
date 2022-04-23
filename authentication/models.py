@@ -20,3 +20,13 @@ class Profile(models.Model):
         if self.is_premium or not self.is_trial_over():
             return True
         return False
+
+
+class FontSettings(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    font_family = models.TextField(default="Roboto-Regular")
+    font_size = models.IntegerField(default=14)
+    font_color = models.TextField(default="#7F7F7F")
+
+    def serialize(self):
+        return {"fontFamily": self.font_family, "fontSize": self.font_size, "lineHeight": self.font_size, "color": self.font_color}
