@@ -26,7 +26,7 @@ HOST = 'https://direito-digital.herokuapp.com'
 SECRET_KEY = 'pfzw!70h-_4om^m0m)rkp9fp4(fsbd6n-st$*lxo%l8*prkm+*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
