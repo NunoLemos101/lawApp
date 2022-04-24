@@ -25,21 +25,21 @@ class Profile(models.Model):
 class FontSettings(models.Model):
 
     FONT_WEIGHT_CHOICES = [
-        ("NORMAL", "normal"),
-        ("BOLD", "bold")
+        ("normal", "normal"),
+        ("normal", "bold")
     ]
 
     FONT_STYLE_CHOICES = [
-        ("NORMAL", "normal"),
-        ("ITALIC", "italic")
+        ("normal", "normal"),
+        ("normal", "italic")
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     font_family = models.TextField(default="Roboto-Regular")
     font_size = models.IntegerField(default=14)
     font_color = models.TextField(default="#7F7F7F")
-    font_weight = models.CharField(max_length=6, choices=FONT_WEIGHT_CHOICES, default="NORMAL")
-    font_style = models.CharField(max_length=6, choices=FONT_STYLE_CHOICES, default="NORMAL")
+    font_weight = models.CharField(max_length=6, choices=FONT_WEIGHT_CHOICES, default="normal")
+    font_style = models.CharField(max_length=6, choices=FONT_STYLE_CHOICES, default="normal")
 
     def serialize(self):
         return {
