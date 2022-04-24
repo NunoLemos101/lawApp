@@ -26,12 +26,12 @@ class FontSettings(models.Model):
 
     FONT_WEIGHT_CHOICES = [
         ("normal", "normal"),
-        ("normal", "bold")
+        ("bold", "bold")
     ]
 
     FONT_STYLE_CHOICES = [
         ("normal", "normal"),
-        ("normal", "italic")
+        ("italic", "italic")
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
