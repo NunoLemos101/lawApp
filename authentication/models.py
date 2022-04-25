@@ -38,6 +38,7 @@ class FontSettings(models.Model):
     font_family = models.TextField(default="Roboto-Regular")
     font_size = models.IntegerField(default=14)
     font_color = models.TextField(default="#7F7F7F")
+    background_color = models.TextField(default="#FFFFFF")
     font_weight = models.CharField(max_length=6, choices=FONT_WEIGHT_CHOICES, default="normal")
     font_style = models.CharField(max_length=6, choices=FONT_STYLE_CHOICES, default="normal")
 
@@ -47,6 +48,7 @@ class FontSettings(models.Model):
             "fontSize": self.font_size,
             "lineHeight": self.font_size,
             "color": self.font_color,
+            "backgroundColor": self.background_color,
             "fontWeight": self.font_weight,
             "fontStyle": self.font_style
         }

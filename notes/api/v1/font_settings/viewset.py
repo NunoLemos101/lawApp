@@ -16,6 +16,7 @@ class FontSettingsViewSet(ViewSet):
         font_settings.font_family = request.data["fontFamily"]
         font_settings.font_size = request.data["fontSize"]
         font_settings.font_color = request.data["color"]
+        font_settings.background_color = request.data["backgroundColor"]
         font_settings.font_weight = request.data["fontWeight"]
         font_settings.font_style = request.data["fontStyle"]
         font_settings.save()
