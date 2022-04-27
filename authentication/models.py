@@ -6,10 +6,63 @@ from datetime import timedelta
 
 User = get_user_model()
 
+DEFAULT_CATEGORY_SETTINGS = [
+    {
+        "id": 0,
+        "title": "Área Civil",
+        "themeColor": "#42C6A5",
+        "codigos": ["cc", "cpc", "crp", "crcivil"],
+        "thumbnail": "BG_1"
+    },
+    {
+        "id": 1,
+        "title": "Área Penal",
+        "themeColor": "#E5C184",
+        "codigos": ["cp", "cpp", "rgit"],
+        "thumbnail": "BG_2"
+    },
+    {
+        "id": 2,
+        "title": "Administrativo",
+        "themeColor": "#98A6EF",
+        "codigos": ["cpa", "cpta"],
+        "thumbnail": "BG_3"
+    },
+    {
+        "id": 3,
+        "title": "Trabalho",
+        "codigos": ["ct", "cpt"],
+        "themeColor": "#64BEE1",
+        "thumbnail": "BG_4"
+    },
+    {
+        "id": 4,
+        "title": "Comercial",
+        "themeColor": "#657286",
+        "codigos": ["csc", "crcomercial", "ncpi", "cvm"],
+        "thumbnail": "BG_6"
+    },
+    {
+        "id": 5,
+        "title": "Fiscal",
+        "themeColor": "#98A6EF",
+        "codigos": ["lgt", "cppt", "rgit"],
+        "thumbnail": "BG_3"
+    },
+    {
+        "id": 6,
+        "title": "Outros",
+        "themeColor": "#FC9BA1",
+        "codigos": ["ce"],
+        "thumbnail": "BG_5"
+    },
+]
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_premium = models.BooleanField(default=False)
+    category_settings = models.JSONField(default=DEFAULT_CATEGORY_SETTINGS)
 
     def is_trial_over(self):
         if timezone.now() > self.user.date_joined + timedelta(days=settings.TRIAL_PERIOD):

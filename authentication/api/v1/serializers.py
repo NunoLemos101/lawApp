@@ -27,10 +27,24 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     premium = serializers.SerializerMethodField(read_only=True)
     android_version_name = serializers.SerializerMethodField(read_only=True)
     font_settings = serializers.SerializerMethodField(read_only=True)
+    category_settings = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
-        fields = ("key", "last_login", "date_joined", "username", "first_name", "last_name", "email", "social_account", "premium", "android_version_name", "font_settings")
+        fields = (
+            "key",
+            "last_login",
+            "date_joined",
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "social_account",
+            "premium",
+            "android_version_name",
+            "font_settings",
+            "category_settings"
+        )
 
     def get_key(self, user):
         return user.auth_token.key
@@ -49,3 +63,6 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_font_settings(self, user):
         return user.fontsettings.serialize()
+
+    def get_category_settings(self, user):
+        return user.profile.category_settings
